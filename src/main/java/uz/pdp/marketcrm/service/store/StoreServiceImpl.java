@@ -1,28 +1,49 @@
 package uz.pdp.marketcrm.service.store;
 
 import lombok.RequiredArgsConstructor;
+import uz.pdp.marketcrm.domain.entity.CardEntity;
 import uz.pdp.marketcrm.domain.entity.ProductEntity;
+import uz.pdp.marketcrm.domain.entity.StoreEntity;
+import uz.pdp.marketcrm.exception.BaseException;
 import uz.pdp.marketcrm.repository.StoreRepository;
 import uz.pdp.marketcrm.service.product.ProductService;
 
+import java.util.List;
 import java.util.UUID;
+
+
+
 @RequiredArgsConstructor
 public class StoreServiceImpl implements StoreService {
     private final ProductService productService;
     private final StoreRepository storeRepository;
 
+
+
+
+
     @Override
-    public void saleProduct(UUID productId, Integer quantity) {
-        ProductEntity product = getProduct(productId);
-        product.setQuantity(product.getQuantity() - quantity);
+    public void saleProduct(CardEntity cardEntity) {
+
     }
 
     @Override
-    public ProductEntity getProduct(UUID productId) {
-        if (productId == null) {
-            throw new BaseException("productId is null");
+    public StoreEntity findStoreById(UUID id) {
+        if (storeRepository.existsById(id)) {
+            throw new BaseException("product already exists");
         }
-        return storeRepository.findAllByProductId(productId)
-                .orElseThrow(() -> new BaseException("product not found"));
+        return storeRepository.findById(id).get();
     }
+
+    @Override
+    public void saveStore(StoreEntity storeEntity) {
+        storeRepository.save(storeEntity);
+    }
+
+    @Override
+    public List<StoreEntity> findAllStores() {
+        return storeRepository.findAll();
+    }
+
+
 }
