@@ -11,8 +11,8 @@ import java.util.UUID;
 @Service
 public interface ProductService {
     void save(ProductRequest productRequest);
-    void saleProducts(List<UUID> productIds, List<Integer> quantities);
+    List<ProductEntity> saleProducts(List<UUID> productIds, List<Integer> quantities);
     ProductEntity findById(UUID id);
-    void update(ProductRequest productRequest);
+    void update(UUID id, ProductRequest productRequest);
     void deleteById(UUID id);
 }
