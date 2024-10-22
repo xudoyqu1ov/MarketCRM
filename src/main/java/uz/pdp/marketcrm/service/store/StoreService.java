@@ -1,13 +1,19 @@
 package uz.pdp.marketcrm.service.store;
 
 import org.springframework.stereotype.Service;
+import uz.pdp.marketcrm.domain.entity.CardEntity;
 import uz.pdp.marketcrm.domain.entity.ProductEntity;
+import uz.pdp.marketcrm.domain.entity.StoreEntity;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
 public interface StoreService {
-    void saleProduct(UUID productId, Integer quantity);
-    ProductEntity getProduct(UUID productId);
+    void saleProduct(CardEntity cardEntity);
+    StoreEntity findStoreById(UUID id);
+    void saveStore(StoreEntity storeEntity);
+    List<StoreEntity> findAllStores();
+
 
 }

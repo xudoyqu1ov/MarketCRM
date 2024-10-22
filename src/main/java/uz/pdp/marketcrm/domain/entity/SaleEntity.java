@@ -13,6 +13,6 @@ import java.util.List;
 @Entity(name = "sales")
 public class SaleEntity extends BaseEntity{
     @OneToMany
-    private List<ProductEntity> products;
+    private List<CardEntity> cardEntities;
     private double totalPrice;
 }

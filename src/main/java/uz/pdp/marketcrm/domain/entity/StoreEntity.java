@@ -3,7 +3,10 @@ package uz.pdp.marketcrm.domain.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.*;
+
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,7 +15,6 @@ import lombok.*;
 @Builder
 @Entity(name = "stores")
 public class StoreEntity extends BaseEntity{
-    @ManyToOne
-    private ProductEntity product;
+    private UUID productId;
     private Integer amount;
 }

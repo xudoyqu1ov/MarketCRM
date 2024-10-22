@@ -1,11 +1,15 @@
 package uz.pdp.marketcrm.service.product;
 
 import lombok.RequiredArgsConstructor;
+import uz.pdp.marketcrm.domain.entity.CardEntity;
 import uz.pdp.marketcrm.domain.entity.ProductEntity;
-import uz.pdp.marketcrm.domain.exception.BaseException;
+
+import uz.pdp.marketcrm.domain.entity.SaleEntity;
 import uz.pdp.marketcrm.domain.request.ProductRequest;
 import uz.pdp.marketcrm.domain.response.ProductResponse;
+import uz.pdp.marketcrm.exception.BaseException;
 import uz.pdp.marketcrm.repository.ProductRepository;
+import uz.pdp.marketcrm.service.sale.SaleService;
 import uz.pdp.marketcrm.service.store.StoreService;
 
 import java.util.ArrayList;
@@ -17,6 +21,8 @@ import java.util.function.Consumer;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final StoreService storeService;
+    private final SaleService saleService;
+
     @Override
     public void save(ProductRequest productRequest) {
         if (productRepository.existsByName(productRequest.getName())) {
@@ -26,20 +32,21 @@ public class ProductServiceImpl implements ProductService {
                 .name(productRequest.getName())
                 .description(productRequest.getDescription())
                 .price(productRequest.getPrice())
-                .quantity(productRequest.getQuantity())
                 .build();
         productRepository.save(productEntity);
     }
 
     @Override
-    public List<ProductEntity> saleProducts(List<UUID> productIds, List<Integer> quantityList) {
+    public List<ProductEntity> saleProducts(List<CardEntity> cardEntities) {
         List<ProductEntity> productEntities = new ArrayList<>();
-        for (int i = 0; i < productIds.size(); i++) {
-            storeService.saleProduct(productIds.get(i), quantityList.get(i));
-            ProductEntity byId = findById(productIds.get(i));
-            byId.setQuantity(quantityList.get(i));
+        double sum = 0;
+        for (int i = 0; i < cardEntities.size(); i++) {
+            ProductEntity byId = findById(cardEntities.get(i).getProductId());
             productEntities.add(byId);
+            sum += byId.getPrice() * cardEntities.get(i).getQuantity();
+            storeService.saleProduct(cardEntities.get(i));
         }
+        saleService.sale(new SaleEntity(cardEntities, sum));
         return productEntities;
     }
 

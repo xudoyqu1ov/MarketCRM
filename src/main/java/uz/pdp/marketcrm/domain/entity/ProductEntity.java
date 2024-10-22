@@ -1,6 +1,7 @@
 package uz.pdp.marketcrm.domain.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @AllArgsConstructor
@@ -13,5 +14,4 @@ public class ProductEntity extends BaseEntity{
     private String name;
     private String description;
     private double price;
-    private Integer quantity;
 }
