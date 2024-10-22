@@ -13,12 +13,8 @@ public class SaleServiceImpl implements SaleService {
     private final SaleRepository saleRepository;
 
     @Override
-    public void sale(List<ProductEntity> products) {
-        double sum = 0;
-        for (ProductEntity product : products) {
-            sum += product.getPrice() * product.getQuantity();
-        }
-        saleRepository.save(new SaleEntity(products,sum));
+    public void sale(SaleEntity saleEntity) {
+        saleRepository.save(saleEntity);
     }
 
     @Override

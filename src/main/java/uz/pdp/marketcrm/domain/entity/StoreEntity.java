@@ -16,5 +16,5 @@ import java.util.UUID;
 @Entity(name = "stores")
 public class StoreEntity extends BaseEntity{
     private UUID productId;
-    private Integer quantity;
+    private Integer amount;
 }

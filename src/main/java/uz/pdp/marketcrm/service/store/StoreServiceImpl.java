@@ -24,7 +24,8 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public void saleProduct(CardEntity cardEntity) {
-
+        StoreEntity allByProductId = storeRepository.findAllByProductId(cardEntity.getProductId());
+        allByProductId.setAmount(allByProductId.getAmount() - cardEntity.getQuantity());
     }
 
     @Override

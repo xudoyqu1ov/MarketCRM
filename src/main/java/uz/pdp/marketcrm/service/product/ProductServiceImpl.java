@@ -44,7 +44,7 @@ public class ProductServiceImpl implements ProductService {
             ProductEntity byId = findById(cardEntities.get(i).getProductId());
             productEntities.add(byId);
             sum += byId.getPrice() * cardEntities.get(i).getQuantity();
-            storeService.saleProduct(cardEntities.get(i).getProductId(), cardEntities.get(i).getQuantity());
+            storeService.saleProduct(cardEntities.get(i));
         }
         saleService.sale(new SaleEntity(cardEntities, sum));
         return productEntities;
