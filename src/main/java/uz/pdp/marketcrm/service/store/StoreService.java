@@ -6,14 +6,14 @@ import uz.pdp.marketcrm.domain.entity.ProductEntity;
 import uz.pdp.marketcrm.domain.entity.StoreEntity;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 public interface StoreService {
     void saleProduct(CardEntity cardEntity);
-    StoreEntity findStoreById(UUID id);
     void saveStore(StoreEntity storeEntity);
     List<StoreEntity> findAllStores();
-
+    StoreEntity findStoreById(UUID id);
 
 }

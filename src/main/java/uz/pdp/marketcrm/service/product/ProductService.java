@@ -16,4 +16,5 @@ public interface ProductService {
     ProductEntity findById(UUID id);
     void update(UUID id, ProductRequest productRequest);
     void deleteById(UUID id);
+    List<ProductEntity> findAll();
 }
