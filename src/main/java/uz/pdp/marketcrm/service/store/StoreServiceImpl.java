@@ -9,6 +9,7 @@ import uz.pdp.marketcrm.repository.StoreRepository;
 import uz.pdp.marketcrm.service.product.ProductService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -17,24 +18,12 @@ import java.util.UUID;
 public class StoreServiceImpl implements StoreService {
     private final ProductService productService;
     private final StoreRepository storeRepository;
-
-
-
-
-
     @Override
     public void saleProduct(CardEntity cardEntity) {
         StoreEntity allByProductId = storeRepository.findAllByProductId(cardEntity.getProductId());
         allByProductId.setAmount(allByProductId.getAmount() - cardEntity.getQuantity());
     }
 
-    @Override
-    public StoreEntity findStoreById(UUID id) {
-        if (storeRepository.existsById(id)) {
-            throw new BaseException("product already exists");
-        }
-        return storeRepository.findById(id).get();
-    }
 
     @Override
     public void saveStore(StoreEntity storeEntity) {
@@ -44,6 +33,14 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public List<StoreEntity> findAllStores() {
         return storeRepository.findAll();
+    }
+
+    @Override
+    public StoreEntity findStoreById(UUID id) {
+        if (storeRepository.existsById(id)) {
+            throw new BaseException("product already exist");
+        }
+        return storeRepository.findById(id).orElseThrow(()-> new BaseException("Store not found"));
     }
 
 
