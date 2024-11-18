@@ -1,6 +1,7 @@
 package uz.pdp.marketcrm.service.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uz.pdp.marketcrm.domain.entity.UserEntity;
@@ -21,6 +22,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final JwtService jwtService;
+
     private final PasswordEncoder passwordEncoder;
 
     @Override

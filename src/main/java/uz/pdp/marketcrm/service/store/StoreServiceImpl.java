@@ -1,6 +1,8 @@
 package uz.pdp.marketcrm.service.store;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
 import uz.pdp.marketcrm.domain.entity.CardEntity;
 import uz.pdp.marketcrm.domain.entity.ProductEntity;
 import uz.pdp.marketcrm.domain.entity.StoreEntity;
@@ -11,12 +13,9 @@ import uz.pdp.marketcrm.service.product.ProductService;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-
-
+@Service
 @RequiredArgsConstructor
 public class StoreServiceImpl implements StoreService {
-    private final ProductService productService;
     private final StoreRepository storeRepository;
     @Override
     public void saleProduct(CardEntity cardEntity) {

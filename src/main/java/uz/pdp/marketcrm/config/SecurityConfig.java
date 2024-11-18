@@ -12,7 +12,14 @@ import uz.pdp.marketcrm.filter.CustomFilter;
 
 @Configuration
 public class SecurityConfig {
-    private final String[] WHITE_LIST = {"/api/auth/login", "/api/auth/register", "/api/auth/swagger-ui/**", "/api/auth/v3/api-docs/**"};
+    //private final String[] WHITE_LIST = {"/api/auth/login", "/api/auth/register", "/api/auth/swagger-ui/**", "/api/auth/v3/api-docs/**"};
+   private final String[] WHITE_LIST = {
+            "/swagger-ui.html",
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/api/users/login",
+            "/api/users/register"
+    };
 
     @Bean
     public PasswordEncoder passwordEncoder() {

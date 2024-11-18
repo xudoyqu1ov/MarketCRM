@@ -23,7 +23,7 @@ public class StoreController {
         return ResponseEntity.ok("Product sale processed successfully");
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<String> saveStore(@RequestBody StoreEntity storeEntity) {
         storeService.saveStore(storeEntity);
         return ResponseEntity.ok("Store saved successfully");

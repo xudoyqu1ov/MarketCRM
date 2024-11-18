@@ -18,7 +18,7 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<String> createProduct(@RequestBody ProductRequest productRequest) {
         productService.save(productRequest);
         return ResponseEntity.ok("Product created successfully");
