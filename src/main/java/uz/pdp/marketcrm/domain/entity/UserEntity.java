@@ -26,6 +26,9 @@ public class UserEntity extends BaseEntity {
     @Column(name = "phone_number", unique = true, length = 20)
     private String phoneNumber;
 
+    @Column(name = "email", unique = true, nullable = false)
+    private String email;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private UserRole role;
