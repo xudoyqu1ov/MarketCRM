@@ -14,14 +14,20 @@ import uz.pdp.marketcrm.domain.enumurators.UserRole;
 @Entity(name = "users")
 @Builder
 public class UserEntity extends BaseEntity {
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
-    @Column(unique = true, nullable = false)
+
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
-    @Column(nullable = false)
+
+    @Column(name = "password", nullable = false)
     private String password;
-    @Column(unique = true, nullable = false)
-    private String email;
+
+    @Column(name = "phone_number", unique = true, length = 20)
+    private String phoneNumber;
+
     @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
     private UserRole role;
 
 }
