@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import uz.pdp.marketcrm.domain.enumurators.ProductCategory;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,4 +14,5 @@ public class ProductRequest {
     private String description;
     private Double price;
     private Integer quantity;
+    private ProductCategory category;
 }
