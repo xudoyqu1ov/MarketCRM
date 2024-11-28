@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(WHITE_LIST).permitAll()
-                                .anyRequest().authenticated()
+                              .anyRequest().authenticated()
                 )
                 .addFilterBefore(new CustomFilter(),
                         UsernamePasswordAuthenticationFilter.class)
