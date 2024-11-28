@@ -35,4 +35,10 @@ public class JwtService {
                 .compact();
     }
 
+    public String extractUsername(String token) {
+        String subject = Jwts.parser().setSigningKey(Keys.hmacShaKeyFor(secret.getBytes())).build().parseSignedClaims(token).getBody().getSubject();
+
+        return subject;
+    }
+
 }
