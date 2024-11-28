@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import uz.pdp.marketcrm.domain.entity.CardEntity;
+import uz.pdp.marketcrm.domain.entity.ProductBoxEntity;
 import uz.pdp.marketcrm.domain.entity.ProductEntity;
 import uz.pdp.marketcrm.domain.entity.StoreEntity;
 import uz.pdp.marketcrm.exception.BaseException;
 import uz.pdp.marketcrm.repository.StoreRepository;
+import uz.pdp.marketcrm.service.box.ProductBoxService;
 import uz.pdp.marketcrm.service.product.ProductService;
 
 import java.util.List;
@@ -17,10 +19,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class StoreServiceImpl implements StoreService {
     private final StoreRepository storeRepository;
+    private final ProductBoxService productBoxService;
     @Override
     public void saleProduct(CardEntity cardEntity) {
-        StoreEntity allByProductId = storeRepository.findAllByProductId(cardEntity.getProductId());
-        allByProductId.setAmount(allByProductId.getAmount() - cardEntity.getQuantity());
+        ProductBoxEntity productBox = productBoxService.findByProductId(cardEntity.getProductId());
+        productBox.setAmount(productBox.getAmount() - cardEntity.getQuantity());
     }
 
 
@@ -37,7 +40,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public StoreEntity findStoreById(UUID id) {
         if (storeRepository.existsById(id)) {
-            throw new BaseException("product already exist");
+            throw new BaseException("Store already exist");
         }
         return storeRepository.findById(id).orElseThrow(()-> new BaseException("Store not found"));
     }

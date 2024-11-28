@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.pdp.marketcrm.domain.entity.CardEntity;
 import uz.pdp.marketcrm.domain.entity.ProductEntity;
+import uz.pdp.marketcrm.domain.enumurators.ProductCategory;
 import uz.pdp.marketcrm.domain.request.ProductRequest;
 import uz.pdp.marketcrm.service.product.ProductService;
 
@@ -24,33 +25,35 @@ public class ProductController {
         return ResponseEntity.ok("Product created successfully");
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/by/{id}")
     public ResponseEntity<ProductEntity> getProductById(@PathVariable UUID id) {
         ProductEntity product = productService.findById(id);
         return ResponseEntity.ok(product);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<String> updateProduct(@PathVariable UUID id, @RequestBody ProductRequest productRequest) {
         productService.update(id, productRequest);
         return ResponseEntity.ok("Product updated successfully");
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable UUID id) {
         productService.deleteById(id);
         return ResponseEntity.ok("Product deleted successfully");
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<ProductEntity>> getAllProducts() {
         List<ProductEntity> products = productService.findAll();
         return ResponseEntity.ok(products);
     }
 
-    @PostMapping("/sale")
-    public ResponseEntity<List<ProductEntity>> saleProducts(@RequestBody List<CardEntity> cardEntities) {
-        List<ProductEntity> soldProducts = productService.saleProducts(cardEntities);
-        return ResponseEntity.ok(soldProducts);
+    @GetMapping("/find/{category}")
+    public ResponseEntity<List<ProductEntity>> getProductsByCategory(@PathVariable ProductCategory category) {
+        List<ProductEntity> byProductCategory = productService.findByProductCategory(category);
+        return ResponseEntity.ok(byProductCategory);
     }
+
+
 }

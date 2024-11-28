@@ -6,6 +6,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -15,6 +16,6 @@ import java.util.UUID;
 @Builder
 @Entity(name = "stores")
 public class StoreEntity extends BaseEntity{
-    private UUID productId;
-    private Integer amount;
+    @OneToMany
+    private List<ProductBoxEntity> products;
 }

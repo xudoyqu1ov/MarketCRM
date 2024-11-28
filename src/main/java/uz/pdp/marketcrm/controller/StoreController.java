@@ -17,11 +17,6 @@ public class StoreController {
 
     private final StoreService storeService;
 
-    @PostMapping("/sale")
-    public ResponseEntity<String> saleProduct(@RequestBody CardEntity cardEntity) {
-        storeService.saleProduct(cardEntity);
-        return ResponseEntity.ok("Product sale processed successfully");
-    }
 
     @PostMapping("/create")
     public ResponseEntity<String> saveStore(@RequestBody StoreEntity storeEntity) {
@@ -29,13 +24,13 @@ public class StoreController {
         return ResponseEntity.ok("Store saved successfully");
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<StoreEntity>> findAllStores() {
         List<StoreEntity> stores = storeService.findAllStores();
         return ResponseEntity.ok(stores);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/by/{id}")
     public ResponseEntity<StoreEntity> findStoreById(@PathVariable UUID id) {
         storeService.findStoreById(id);
         return ResponseEntity.ok(storeService.findStoreById(id));

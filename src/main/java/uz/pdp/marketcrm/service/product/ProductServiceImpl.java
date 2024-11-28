@@ -3,14 +3,15 @@ package uz.pdp.marketcrm.service.product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
-import uz.pdp.marketcrm.domain.entity.CardEntity;
-import uz.pdp.marketcrm.domain.entity.ProductEntity;
+import uz.pdp.marketcrm.domain.entity.*;
 
-import uz.pdp.marketcrm.domain.entity.SaleEntity;
+import uz.pdp.marketcrm.domain.enumurators.ProductCategory;
 import uz.pdp.marketcrm.domain.request.ProductRequest;
 import uz.pdp.marketcrm.domain.response.ProductResponse;
 import uz.pdp.marketcrm.exception.BaseException;
+import uz.pdp.marketcrm.repository.ProductBoxRepository;
 import uz.pdp.marketcrm.repository.ProductRepository;
+import uz.pdp.marketcrm.service.box.ProductBoxService;
 import uz.pdp.marketcrm.service.sale.SaleService;
 import uz.pdp.marketcrm.service.store.StoreService;
 
@@ -23,8 +24,7 @@ import java.util.function.Consumer;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    private final StoreService storeService;
-    private final SaleService saleService;
+    private final ProductBoxService productBoxService;
 
     @Override
     public void save(ProductRequest productRequest) {
@@ -36,23 +36,9 @@ public class ProductServiceImpl implements ProductService {
                 .description(productRequest.getDescription())
                 .price(productRequest.getPrice())
                 .build();
-        productRepository.save(productEntity);
+        ProductEntity product = productRepository.save(productEntity);
+        productBoxService.save(new ProductBoxEntity(product.getId(), productRequest.getQuantity()));
     }
-
-    @Override
-    public List<ProductEntity> saleProducts(List<CardEntity> cardEntities) {
-        List<ProductEntity> productEntities = new ArrayList<>();
-        double sum = 0;
-        for (int i = 0; i < cardEntities.size(); i++) {
-            ProductEntity byId = findById(cardEntities.get(i).getProductId());
-            productEntities.add(byId);
-            sum += byId.getPrice() * cardEntities.get(i).getQuantity();
-            storeService.saleProduct(cardEntities.get(i));
-        }
-        saleService.sale(new SaleEntity(cardEntities, sum));
-        return productEntities;
-    }
-
     @Override
     public ProductEntity findById(UUID id) {
         if (productRepository.existsById(id)) {
@@ -78,5 +64,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductEntity> findAll() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public ProductEntity findByProductName(String productName) {
+        return productRepository.findByName(productName).orElseThrow(() -> new BaseException("product not found"));
+    }
+
+    @Override
+    public List<ProductEntity> findByProductCategory(ProductCategory productCategory) {
+        return productRepository.findAllByCategory(productCategory);
     }
 }
