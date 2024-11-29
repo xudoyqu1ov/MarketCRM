@@ -1,5 +1,6 @@
 package uz.pdp.marketcrm.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,8 +12,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import uz.pdp.marketcrm.filter.CustomFilter;
 
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
-    //private final String[] WHITE_LIST = {"/api/auth/login", "/api/auth/register", "/api/auth/swagger-ui/**", "/api/auth/v3/api-docs/**"};
+    private final CustomFilter customFilter;
+
    private final String[] WHITE_LIST = {
             "/swagger-ui.html",
             "/swagger-ui/**",
@@ -20,6 +23,7 @@ public class SecurityConfig {
             "/api/users/login",
             "/api/users/register"
     };
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -36,7 +40,7 @@ public class SecurityConfig {
                                 .requestMatchers(WHITE_LIST).permitAll()
                               .anyRequest().authenticated()
                 )
-                .addFilterBefore(new CustomFilter(),
+                .addFilterBefore(customFilter,
                         UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
