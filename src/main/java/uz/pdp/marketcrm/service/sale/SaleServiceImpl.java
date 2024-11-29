@@ -31,7 +31,6 @@ public class SaleServiceImpl implements SaleService {
     public List<SaleEntity> getSales() {
         return saleRepository.findAll();
     }
-
     @Override
     public List<ProductEntity> saleProduct(List<CardEntity> cardEntities) {
         List<ProductEntity> productEntities = new ArrayList<>();

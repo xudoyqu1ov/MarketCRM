@@ -18,4 +18,5 @@ import java.util.UUID;
 public class StoreEntity extends BaseEntity{
     @OneToMany
     private List<ProductBoxEntity> products;
+
 }

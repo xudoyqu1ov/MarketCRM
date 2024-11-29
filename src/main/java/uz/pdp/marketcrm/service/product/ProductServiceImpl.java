@@ -40,6 +40,7 @@ public class ProductServiceImpl implements ProductService {
         ProductEntity product = productRepository.save(productEntity);
         productBoxService.save(new ProductBoxEntity(product.getId(), productRequest.getQuantity()));
     }
+
     @Override
     public ProductEntity findById(UUID id) {
         if (productRepository.existsById(id)) {

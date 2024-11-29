@@ -23,4 +23,5 @@ public class BaseEntity {
     protected LocalDateTime createdAt;
     @UpdateTimestamp
     protected LocalDateTime updatedAt;
+
 }

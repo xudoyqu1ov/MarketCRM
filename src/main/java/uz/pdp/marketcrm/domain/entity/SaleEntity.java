@@ -15,4 +15,5 @@ public class SaleEntity extends BaseEntity{
     @OneToMany
     private List<CardEntity> cardEntities;
     private double totalPrice;
+
 }

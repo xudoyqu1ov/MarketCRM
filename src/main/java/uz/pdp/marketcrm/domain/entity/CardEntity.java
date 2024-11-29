@@ -13,4 +13,5 @@ import java.util.UUID;
 public class CardEntity extends BaseEntity {
     private UUID productId;
     private Integer quantity;
+
 }

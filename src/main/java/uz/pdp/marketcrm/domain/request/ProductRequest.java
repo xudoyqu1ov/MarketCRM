@@ -15,4 +15,5 @@ public class ProductRequest {
     private Double price;
     private Integer quantity;
     private String category;
+
 }

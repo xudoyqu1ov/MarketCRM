@@ -33,7 +33,6 @@ public class ProductBoxController {
         List<ProductBoxEntity> productBoxes = productBoxService.findAll();
         return ResponseEntity.ok(productBoxes);
     }
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
         productBoxService.delete(id);

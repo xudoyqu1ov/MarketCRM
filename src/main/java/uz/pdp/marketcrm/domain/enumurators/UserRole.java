@@ -4,4 +4,5 @@ import lombok.Getter;
 
 public enum UserRole {
     CEO,MANAGER,CUSTOMER,IMPORTER;
+
 }

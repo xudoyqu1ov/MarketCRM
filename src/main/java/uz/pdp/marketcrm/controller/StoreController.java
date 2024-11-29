@@ -29,7 +29,6 @@ public class StoreController {
         List<StoreEntity> stores = storeService.findAllStores();
         return ResponseEntity.ok(stores);
     }
-
     @GetMapping("/find/by/{id}")
     public ResponseEntity<StoreEntity> findStoreById(@PathVariable UUID id) {
         storeService.findStoreById(id);
