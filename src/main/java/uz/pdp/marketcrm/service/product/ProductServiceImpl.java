@@ -43,9 +43,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductEntity findById(UUID id) {
-        if (productRepository.existsById(id)) {
-            throw new BaseException("product already exist");
-        }
         return productRepository.findById(id).orElseThrow(() -> new BaseException("product not found"));
     }
 

@@ -30,9 +30,6 @@ public class ProductBoxServiceImpl implements ProductBoxService {
     }
     @Override
     public ProductBoxEntity findById(UUID id) {
-        if (productBoxRepository.existsById(id)) {
-            throw new BaseException("product already exist");
-        }
         return productBoxRepository.findById(id).orElseThrow(() -> new BaseException("product not found"));
     }
 

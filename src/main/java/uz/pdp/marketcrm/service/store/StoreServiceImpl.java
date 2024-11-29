@@ -38,9 +38,6 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public StoreEntity findStoreById(UUID id) {
-        if (storeRepository.existsById(id)) {
-            throw new BaseException("Store already exist");
-        }
         return storeRepository.findById(id).orElseThrow(()-> new BaseException("Store not found"));
     }
 
