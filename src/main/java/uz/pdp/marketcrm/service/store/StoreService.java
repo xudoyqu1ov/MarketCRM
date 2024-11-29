@@ -15,5 +15,4 @@ public interface StoreService {
     void saveStore(StoreEntity storeEntity);
     List<StoreEntity> findAllStores();
     StoreEntity findStoreById(UUID id);
-
 }

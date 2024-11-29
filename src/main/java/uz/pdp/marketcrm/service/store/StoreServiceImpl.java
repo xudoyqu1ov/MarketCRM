@@ -26,7 +26,6 @@ public class StoreServiceImpl implements StoreService {
         productBox.setAmount(productBox.getAmount() - cardEntity.getQuantity());
     }
 
-
     @Override
     public void saveStore(StoreEntity storeEntity) {
         storeRepository.save(storeEntity);

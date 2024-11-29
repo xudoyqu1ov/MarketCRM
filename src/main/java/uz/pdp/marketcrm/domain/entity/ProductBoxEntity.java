@@ -13,4 +13,5 @@ import java.util.UUID;
 public class ProductBoxEntity extends BaseEntity {
     private UUID productId;
     private Integer amount;
+
 }

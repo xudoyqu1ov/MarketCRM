@@ -19,4 +19,5 @@ public interface ProductService {
     List<ProductEntity> findAll();
     ProductEntity findByProductName(String productName);
     List<ProductEntity> findByProductCategory(ProductCategory productCategory);
+
 }

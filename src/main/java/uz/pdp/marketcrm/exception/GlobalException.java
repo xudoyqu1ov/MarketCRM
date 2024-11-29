@@ -28,4 +28,5 @@ public class GlobalException {
                 );
         return ResponseEntity.status(400).body(errors);
     }
+
 }

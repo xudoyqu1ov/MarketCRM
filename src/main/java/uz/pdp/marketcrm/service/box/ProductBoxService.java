@@ -13,5 +13,4 @@ public interface ProductBoxService {
     List<ProductBoxEntity> findAll();
     void delete(UUID id);
     ProductBoxEntity findByProductId(UUID productId);
-
 }

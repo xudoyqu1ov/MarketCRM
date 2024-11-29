@@ -21,7 +21,6 @@ public class SaleController {
         List<ProductEntity> products = saleService.saleProduct(cards);
         return ResponseEntity.ok(products);
     }
-
     @GetMapping
     public ResponseEntity<List<SaleEntity>> getAllSales() {
         List<SaleEntity> sales = saleService.getSales();

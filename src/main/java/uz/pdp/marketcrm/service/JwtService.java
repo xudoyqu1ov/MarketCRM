@@ -26,6 +26,7 @@ public class JwtService {
                 .compact();
     }
 
+
     public String generateRefreshToken(UserEntity user) {
         return Jwts.builder()
                 .setSubject(user.getUsername())

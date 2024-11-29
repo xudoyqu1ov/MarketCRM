@@ -3,5 +3,7 @@ import lombok.Getter;
 @Getter
 
 public enum UserRole {
+
     MANAGER,ADMIN;
+
 }

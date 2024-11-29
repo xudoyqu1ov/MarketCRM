@@ -28,7 +28,6 @@ public class ProductBoxServiceImpl implements ProductBoxService {
         ProductBoxEntity save = productBoxRepository.save(productBox);
         storeRepository.save(new StoreEntity(List.of(save)));
     }
-
     @Override
     public ProductBoxEntity findById(UUID id) {
         if (productBoxRepository.existsById(id)) {

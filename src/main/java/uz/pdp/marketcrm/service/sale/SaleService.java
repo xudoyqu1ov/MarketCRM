@@ -12,4 +12,5 @@ public interface SaleService {
     void save(SaleEntity saleEntity);
     List<SaleEntity> getSales();
     List<ProductEntity> saleProduct(List<CardEntity> cardEntities);
+
 }

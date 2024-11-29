@@ -10,6 +10,7 @@ import uz.pdp.marketcrm.domain.enumurators.UserRole;
 public class LoginDTO {
     private String username;
     private String password;
+
     private UserRole role;
 
 }

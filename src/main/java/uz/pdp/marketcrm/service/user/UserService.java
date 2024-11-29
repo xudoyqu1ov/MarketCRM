@@ -15,4 +15,5 @@ public interface UserService {
     UserResponse findById(UUID id);
     List<UserResponse> getAllUsers();
     JwtResponse login(LoginDTO loginDTO);
+
 }
