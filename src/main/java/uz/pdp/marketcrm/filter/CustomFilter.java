@@ -32,7 +32,7 @@ public class CustomFilter extends OncePerRequestFilter {
         }
 
         String token = authorization.substring(7);
-        String username = jwtService.extractUsername(token);
+         username = jwtService.extractUsername(token);
 
         UsernamePasswordAuthenticationToken auth =
                 new UsernamePasswordAuthenticationToken

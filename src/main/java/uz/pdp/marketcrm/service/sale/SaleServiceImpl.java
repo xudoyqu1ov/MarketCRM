@@ -13,7 +13,6 @@ import uz.pdp.marketcrm.service.store.StoreService;
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.jsonwebtoken.impl.security.EdwardsCurve.findById;
 
 @Service
 @RequiredArgsConstructor
